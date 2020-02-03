@@ -13,19 +13,24 @@ export class HttpClientService {
   constructor(private httpClient: HttpClient) {
     this.apiUrl = environment.apiUrl;
   }
-  get(uri: string, params: any) {
-    return this.httpClient.get(`${this.apiUrl}` + uri, params);
+
+  get(uri: string, options: any) {
+    return this.httpClient.get(`${this.apiUrl}` + uri, options);
   }
 
-  create(uri: string, body: any) {
+  post(uri: string, body: any) {
     return this.httpClient.post(`${this.apiUrl}` + uri, body);
   }
 
-  update(uri: string, body: any) {
-    return this.httpClient.patch(`${this.apiUrl}` + uri, body);
+  patch(uri: string, options?: any) {
+    return this.httpClient.patch(`${this.apiUrl}` + uri, options);
   }
 
-  delete(uri: string, params: any) {
-    return this.httpClient.delete(`${this.apiUrl}` + uri, params);
+  put(uri: string, options?: any) {
+    return this.httpClient.put(`${this.apiUrl}` + uri, options);
+  }
+
+  delete(uri: string, options?: any) {
+    return this.httpClient.delete(`${this.apiUrl}` + uri, options);
   }
 }

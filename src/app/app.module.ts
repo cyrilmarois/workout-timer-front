@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -13,6 +15,7 @@ import { TimerComponent } from './timer/timer.component';
 import { TimerListComponent } from './timer/list/timer-list.component';
 import { TimerDetailComponent } from './timer/detail/timer-detail.component';
 import { TimerEditComponent } from './timer/edit/timer-edit.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -20,12 +23,14 @@ import { TimerEditComponent } from './timer/edit/timer-edit.component';
     TimerListComponent,
     TimerDetailComponent,
     TimerEditComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    NgbModule,
     AppRoutingModule,
     MatSliderModule
   ],

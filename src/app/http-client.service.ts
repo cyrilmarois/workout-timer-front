@@ -22,12 +22,12 @@ export class HttpClientService {
     return this.httpClient.post(`${this.apiUrl}` + uri, body);
   }
 
-  patch(uri: string, options?: any) {
-    return this.httpClient.patch(`${this.apiUrl}` + uri, options);
+  patch(uri: string, body?: any) {
+    return this.httpClient.patch(`${this.apiUrl}` + uri, body);
   }
 
-  put(uri: string, options?: any) {
-    return this.httpClient.put(`${this.apiUrl}` + uri, options);
+  put(uri: string, body?: any) {
+    return this.httpClient.put(`${this.apiUrl}` + uri, body);
   }
 
   delete(uri: string, options?: any) {

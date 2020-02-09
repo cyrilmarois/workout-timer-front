@@ -1,4 +1,4 @@
-import { HttpClientService } from './../http-client.service';
+import { HttpClientService } from '../core/http-client.service';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -12,6 +12,8 @@ export class TimerService {
   async list(options?: any) {
     const data = await this.httpClient.get(`${this.BASE_URI}/`, options)
       .toPromise();
+
+    console.warn('DATA LIST : ' + data);
 
     return data;
   }

@@ -1,21 +1,24 @@
 import { HttpClientService } from '../core/http-client.service';
 import { Injectable } from '@angular/core';
+import { Timer } from './timer.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TimerService {
   private BASE_URI = 'timer';
+  private timers: [];
 
   constructor(private httpClient: HttpClientService) {}
 
   async list(options?: any) {
-    const data = await this.httpClient.get(`${this.BASE_URI}/`, options)
+    const res: any =  await this.httpClient.get(`${this.BASE_URI}/`, options)
       .toPromise();
+    if (res.data) {
+      this.timers = res.data.map((timer: any) => new Timer(timer.id, timer.name, timer.description));
+    }
 
-    console.warn('DATA LIST : ' + data);
-
-    return data;
+    return this.timers;
   }
 
   async show(id: number, options?: any) {

@@ -1,4 +1,4 @@
-export class TimerModel {
+export class Timer {
   private id: number;
   private name: string;
   private description: string;

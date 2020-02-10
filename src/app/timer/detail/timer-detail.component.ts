@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-timer-detail',
@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./timer-detail.component.sass']
 })
 export class TimerDetailComponent implements OnInit {
+  @Input() timer: any;
 
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

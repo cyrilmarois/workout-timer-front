@@ -1,1 +1,8 @@
-<p>timer-detail works!</p>
+<mat-card>
+  <mat-card-content>
+    <div *ngIf="undefined !== timer">
+      <p>{{ timer.name }}</p>
+      <p>{{ timer.description }}</p>
+    </div>
+  </mat-card-content>
+</mat-card>

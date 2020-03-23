@@ -87,28 +87,23 @@ export class TimerEditComponent implements OnInit {
   getDuration() {
     for (let i = 0; i <= 24; i++) {
       let tmpI: string = i.toString();
-      console.warn('tmpI', ...tmpI);
       if (i < 10) {
         tmpI = '0' + tmpI;
       }
-      console.warn('tmpI', ...tmpI);
       this.duration[0].hours.push(tmpI);
     }
     for (let i = 0; i <= 60; i++) {
       let tmpI: string = i.toString();
-      console.warn('tmpI', ...tmpI);
       if (i < 10) {
         tmpI = '0' + tmpI;
       }
-      console.warn('tmpI', ...tmpI);
       this.duration[0].minutes.push(tmpI);
       this.duration[0].seconds.push(tmpI);
     }
   }
 
   onCycleTypeChange(data) {
-    console.warn(data);
-    this.typeIsDefined = !this.typeIsDefined;
+    this.typeIsDefined = true;
   }
 
 }

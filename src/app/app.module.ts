@@ -1,3 +1,6 @@
+import { TypeComponent } from './type/type.component';
+import { SoundComponent } from './sound/sound.component';
+import { CycleComponent } from './cycle/cycle.component';
 import { SetComponent } from './set/set.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -32,6 +35,9 @@ import { HeaderComponent } from './header/header.component';
     TimerDetailComponent,
     TimerEditComponent,
     SetComponent,
+    CycleComponent,
+    SoundComponent,
+    TypeComponent,
     NotFoundComponent
   ],
   imports: [

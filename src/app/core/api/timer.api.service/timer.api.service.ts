@@ -1,12 +1,11 @@
-import { HttpClientService } from '../core/http-client.service';
+import { HttpClientService } from '../http-client.service';
 import { Injectable } from '@angular/core';
-import { Timer } from './timer.model';
-import { ITimer } from './timer';
+import { Timer } from '../../../timer/timer.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TimerService {
+export class TimerApiService {
   private BASE_URI = 'timer';
   private timers: [];
   private timer: Timer;

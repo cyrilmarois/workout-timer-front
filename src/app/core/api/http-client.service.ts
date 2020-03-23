@@ -1,8 +1,8 @@
-import { NoopInterceptor } from './noop-interceptor';
+import { NoopInterceptor } from '../noop-interceptor';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { throwError } from 'rxjs';
 
 @Injectable({

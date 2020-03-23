@@ -1,4 +1,4 @@
-import { SetService } from './set.service';
+import { SetApiService } from '../core/api/set.api.service/set.api.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SetComponent implements OnInit {
 
-  constructor(private setService: SetService) { }
+  constructor(private setApiService: SetApiService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+
+  }
 
 }

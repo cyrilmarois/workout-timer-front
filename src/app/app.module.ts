@@ -1,32 +1,35 @@
-import { TypeComponent } from './type/type.component';
-import { SoundComponent } from './sound/sound.component';
-import { CycleComponent } from './cycle/cycle.component';
-import { SetComponent } from './set/set.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {
   MatCardModule,
   MatCheckboxModule,
   MatExpansionModule,
   MatFormFieldModule,
   MatIconModule,
+  MatInputModule,
   MatListModule,
+  MatOptionModule,
+  MatSelectModule,
   MatSliderModule
 } from '@angular/material';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { CycleComponent } from './cycle/cycle.component';
+import { HeaderComponent } from './header/header.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-
-import { TimerListComponent } from './timer/list/timer-list.component';
+import { SetComponent } from './set/set.component';
+import { SoundComponent } from './sound/sound.component';
 import { TimerDetailComponent } from './timer/detail/timer-detail.component';
 import { TimerEditComponent } from './timer/edit/timer-edit.component';
-import { HeaderComponent } from './header/header.component';
+import { TimerListComponent } from './timer/list/timer-list.component';
+import { TypeComponent } from './type/type.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,8 +54,12 @@ import { HeaderComponent } from './header/header.component';
     MatExpansionModule,
     MatFormFieldModule,
     MatIconModule,
+    MatInputModule,
+    MatOptionModule,
     MatListModule,
-    MatSliderModule
+    MatSelectModule,
+    MatSliderModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

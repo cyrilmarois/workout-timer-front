@@ -1,16 +1,28 @@
+<p>timer-list works!</p>
 <div class="row">
-  <div class="col-md-8 offset-md-2">
-    <div class="row">
-      <div class="col-md-4">
-        <mat-card *ngFor="let timer of timers">
-          <mat-card-title>{{ timer.name }}</mat-card-title>
-          <mat-card-content>{{ timer.description }}</mat-card-content>
-          <mat-card-actions>ACTIONS</mat-card-actions>
-        </mat-card>
-      </div>
-      <div class="col-md-7 offset-md-1">
-        <app-timer-detail [timer]="timer"></app-timer-detail>
-      </div>
+  <div class="col-md-5 mx-auto">
+   <button (click)="goToCreate()"
+          class="btn btn-primary">Create TIMER !</button>
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let timer of timers"
+                          (opened)="loadTimerData(timer)">
+        <mat-expansion-panel-header>
+          <mat-panel-title>{{ timer.name }}</mat-panel-title>
+          <mat-panel-description>
+            {{ timer.description }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="row">
+          <div class="col-md-4">
+            <app-set></app-set>
+          </div>
+          <div class="col-md-8">
+
+          </div>
+        </div>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+
     </div>
-  </div>
 </div>

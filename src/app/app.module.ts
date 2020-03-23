@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatCardModule,
   MatCheckboxModule,
+  MatExpansionModule,
   MatFormFieldModule,
   MatIconModule,
   MatListModule,
@@ -23,16 +24,15 @@ import { TimerListComponent } from './timer/list/timer-list.component';
 import { TimerDetailComponent } from './timer/detail/timer-detail.component';
 import { TimerEditComponent } from './timer/edit/timer-edit.component';
 import { HeaderComponent } from './header/header.component';
-
 @NgModule({
   declarations: [
     AppComponent,
-    SetComponent,
+    HeaderComponent,
     TimerListComponent,
     TimerDetailComponent,
     TimerEditComponent,
-    NotFoundComponent,
-    HeaderComponent
+    SetComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +42,7 @@ import { HeaderComponent } from './header/header.component';
     AppRoutingModule,
     MatCardModule,
     MatCheckboxModule,
+    MatExpansionModule,
     MatFormFieldModule,
     MatIconModule,
     MatListModule,

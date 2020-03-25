@@ -2,7 +2,6 @@ import { Type } from '../../../type/type.model';
 import { HttpClientService } from '../http-client.service';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,15 +11,7 @@ export class TypeApiService {
   constructor(private httpClientService: HttpClientService) {
   }
 
-  getType(id: number, options?: any) {
-    return this.httpClientService
-      .get(`${this.BASE_URI}/` + id, options)
-      .pipe(
-        map((res: any) => new Type().deserializable(res))
-      );
-  }
-
-  getTypes(options?: any) {
+  getAll(options?: any) {
     return this.httpClientService
       .get(`${this.BASE_URI}/`, options)
       .pipe(
@@ -36,6 +27,14 @@ export class TypeApiService {
 
           return dataArray;
         })
+      );
+  }
+
+  get(id: number, options?: any) {
+    return this.httpClientService
+      .get(`${this.BASE_URI}/` + id, options)
+      .pipe(
+        map((res: any) => new Type().deserializable(res))
       );
   }
 }

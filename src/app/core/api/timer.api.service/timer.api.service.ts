@@ -1,56 +1,59 @@
+import { map } from 'rxjs/operators';
+import { Timer } from './../../../timer/timer.model';
 import { HttpClientService } from '../http-client.service';
 import { Injectable } from '@angular/core';
-import { Timer } from '../../../timer/timer.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TimerApiService {
   private BASE_URI = 'timer';
-  private timers: [];
-  private timer: Timer;
 
-  constructor(private httpClient: HttpClientService) {}
+  constructor(private httpClientService: HttpClientService) {}
 
-  async getTimers(options?: any) {
-    const res: any =  await this.httpClient.get(`${this.BASE_URI}/`, options)
-      .toPromise();
-    if (res.data) {
-      this.timers = res.data.map((timer: any) => new Timer(timer.id, timer.name, timer.description));
-    }
+  getAll(options?: any) {
+    return this.httpClientService
+      .get(`${this.BASE_URI}/`, options)
+      .pipe(
+        map((res: any) => {
+          const dataArray: Timer[] = [];
+          if (res.data) {
+            res.data.forEach(element => {
+              element = new Timer().deserializable(element);
+              dataArray.push(element);
+            });
+          }
 
-    return this.timers;
+          return dataArray;
+        }));
   }
 
-  async getTimer(id: number, options?: any) {
-    const res: any = await this.httpClient.get(`${this.BASE_URI}/` + id, options)
-      .toPromise();
-
-    if (res.id) {
-      this.timer = new Timer(res.id, res.name, res.description);
-    }
-
-    return this.timer;
+  get(id: number, options?: any) {
+    return this.httpClientService
+      .get(`${this.BASE_URI}/` + id, options)
+      .pipe(
+        map((res: any) => new Timer().deserializable(res))
+      );
   }
 
-  async update(id: number, body: any) {
-    const res: any = await this.httpClient.put(`${this.BASE_URI}/` + id , body)
-      .toPromise();
-
-    return res;
+  update(id: number, body: any) {
+    return this.httpClientService
+      .put(`${this.BASE_URI}/` + id , body)
+      .pipe(
+        map((res: any) => new Timer().deserializable(res))
+      );
   }
 
-  async create(body: any) {
-    const res: any = await this.httpClient.post(`${this.BASE_URI}/`, body)
-      .toPromise();
-
-    return res;
+  create(body: any) {
+    return this.httpClientService
+      .post(`${this.BASE_URI}/`, body)
+      .pipe(
+        map((res: any) => new Timer().deserializable(res))
+      );
   }
 
-  async delete(id: number, options?: any) {
-    const res: any = await this.httpClient.delete(`${this.BASE_URI}/` + id, options)
-      .toPromise();
-
-    return res;
+  delete(id: number, options?: any) {
+    return this.httpClientService
+      .delete(`${this.BASE_URI}/` + id, options);
   }
 }

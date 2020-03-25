@@ -1,4 +1,5 @@
-import { TimerApiService } from '../../core/api/timer.api.service/timer.api.service';
+import { TimerService } from './../timer.service';
+import { TypeService } from './../../type/type.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -32,7 +33,9 @@ export class TimerEditComponent implements OnInit {
   setCount = [];
   types: any;
   sounds: any;
-  constructor(private route: ActivatedRoute, private timerApiService: TimerApiService) { }
+  constructor(private route: ActivatedRoute,
+              private timerService: TimerService,
+              private typeService: TypeService) { }
 
   ngOnInit() {
     this.route.params
@@ -40,7 +43,7 @@ export class TimerEditComponent implements OnInit {
       this.id = +params['id'];
       this.isNew = undefined === params['id'];
       if (!this.isNew) {
-        this.timer = this.timerApiService.getTimer(this.id);
+        this.timer = this.timerService.getTimer(this.id);
       }
     });
     this.getSetTotal();
@@ -68,12 +71,8 @@ export class TimerEditComponent implements OnInit {
   }
 
 
-  getTypes() {
-    this.types = [
-      { id: 1, value: 'High' },
-      { id: 2, value: 'Low' },
-      { id: 3, value: 'Rest' }
-    ];
+  private async getTypes() {
+    this.types = await this.typeService.getTypes();
   }
 
   getSounds() {

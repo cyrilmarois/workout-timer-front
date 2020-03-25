@@ -1,8 +1,6 @@
+import { TimerService } from './../timer.service';
 import { Timer } from '../timer.model';
-import { ITimer } from '../timer';
-import { TimerApiService } from '../../core/api/timer.api.service/timer.api.service';
 import { Component, OnInit } from '@angular/core';
-import {coerceNumberProperty} from '@angular/cdk/coercion';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -12,22 +10,22 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class TimerListComponent implements OnInit {
 
-  constructor(private timerApiService: TimerApiService,
+  constructor(private timerService: TimerService,
               private router: Router,
               private route: ActivatedRoute) { }
 
   timers: any = [];
   timer: any;
-  ngOnInit() {
+  async ngOnInit() {
     this.list();
   }
 
    private async list() {
-    this.timers = await this.timerApiService.getTimers({fields: 'timer'});
+    this.timers = await this.timerService.getTimers({fields: 'timer'});
   }
 
   goToDetail(timer: Timer) {
-    // this.router.navigate([timer.id], {relativeTo: this.route});
+    this.router.navigate([timer.getId()], {relativeTo: this.route});
   }
 
   async loadTimerData(timer) {
@@ -36,7 +34,7 @@ export class TimerListComponent implements OnInit {
   }
 
   private async getTimer(id: number) {
-    const data = await this.timerApiService.getTimer(id, {params: {fields: 'set'}});
+    const data = await this.timerService.getTimer(id, {params: {fields: 'set'}});
     console.log(' async data', data);
   }
 

@@ -8,15 +8,14 @@ import { Injectable } from '@angular/core';
 export class TypeService {
   constructor(private typeApiService: TypeApiService) {}
 
-  async getType(id: number, options?: any) {
-    const res = await this.typeApiService.getType(id, options)
+  async getTypes(options?: any) {
+    const res = await this.typeApiService.getAll(options)
       .toPromise();
 
     return res;
   }
-
-  async getTypes(options?: any) {
-    const res = await this.typeApiService.getTypes(options)
+  async getType(id: number, options?: any) {
+    const res = await this.typeApiService.get(id, options)
       .toPromise();
 
     return res;

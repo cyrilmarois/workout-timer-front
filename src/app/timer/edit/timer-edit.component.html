@@ -34,7 +34,7 @@
 
         <mat-form-field appearance="standard">
           <mat-select formControlName="cycleType" (selectionChange)="onCycleTypeChange($event)" required>
-            <mat-option *ngFor="let type of types; index as key" [value]="type.id">{{ type.value }}
+            <mat-option *ngFor="let type of types" [value]="type.id">{{ type.slug }}
             </mat-option>
           </mat-select>
           <mat-label>Type</mat-label>

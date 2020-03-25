@@ -1,8 +1,8 @@
 import { Deserializable } from '../core/deserializable';
 
 export class Type implements Deserializable {
-  id: number;
-  slug: string;
+  private id: number;
+  private slug: string;
 
   deserializable(input: any) {
     Object.assign(this, input);

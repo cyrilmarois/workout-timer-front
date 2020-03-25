@@ -77,7 +77,7 @@
       <div class="form-group">
         <mat-form-field appearance="standard">
           <mat-select formControlName="cycleSound" required>
-            <mat-option *ngFor="let sound of sounds; index as key" [value]="sound.id">{{ sound.value | json }}
+            <mat-option *ngFor="let sound of sounds; index as key" [value]="sound.id">{{ sound.name }}
             </mat-option>
           </mat-select>
           <mat-label>Sound</mat-label>

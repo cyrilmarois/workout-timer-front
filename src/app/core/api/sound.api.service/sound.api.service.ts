@@ -1,24 +1,40 @@
+import { Sound } from '../../../sound/sound.model';
 import { HttpClientService } from '../http-client.service';
 import { Injectable } from '@angular/core';
-
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
 export class SoundApiService {
   private BASE_URI = 'sound';
-  sounds: [] = [];
 
-  constructor(private httpClient: HttpClientService) {
+  constructor(private httpClientService: HttpClientService) {
   }
 
-  async getSounds(options ?: any) {
-    const res: any = this.httpClient.get(`${this.BASE_URI}`, options)
-      .toPromise();
+  getAll(options?: any) {
+    return this.httpClientService
+      .get(`${this.BASE_URI}/`, options)
+      .pipe(
+        map((res: any) => {
+          console.warn('res', res, 'data', res.data);
+          const dataArray: Sound[] = [];
+          if (res.data) {
+            res.data.forEach(element => {
+              element = new Sound().deserializable(element);
+              dataArray.push(element);
+            });
+          }
 
-    if (res.data) {
-      this.sounds = res.data;
-    }
+          return dataArray;
+        })
+      );
+  }
 
-    return this.sounds;
+  get(id: number, options?: any) {
+    return this.httpClientService
+      .get(`${this.BASE_URI}/` + id, options)
+      .pipe(
+        map((res: any) => new Sound().deserializable(res))
+      );
   }
 }

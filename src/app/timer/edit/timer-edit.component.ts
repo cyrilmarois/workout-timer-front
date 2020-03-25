@@ -1,3 +1,4 @@
+import { SoundService } from './../../sound/sound.service';
 import { TimerService } from './../timer.service';
 import { TypeService } from './../../type/type.service';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -35,7 +36,8 @@ export class TimerEditComponent implements OnInit {
   sounds: any;
   constructor(private route: ActivatedRoute,
               private timerService: TimerService,
-              private typeService: TypeService) { }
+              private typeService: TypeService,
+              private soundService: SoundService) { }
 
   ngOnInit() {
     this.route.params
@@ -46,7 +48,7 @@ export class TimerEditComponent implements OnInit {
         this.timer = this.timerService.getTimer(this.id);
       }
     });
-    this.getSetTotal();
+    this.getSetCount();
     this.getTypes();
     this.getSounds();
     this.getDuration();
@@ -64,7 +66,7 @@ export class TimerEditComponent implements OnInit {
     console.warn(this.timerForm.value);
   }
 
-  getSetTotal() {
+  getSetCount() {
     for (let i = 1; i <= 10; i++) {
       this.setCount.push(i);
     }
@@ -75,12 +77,8 @@ export class TimerEditComponent implements OnInit {
     this.types = await this.typeService.getTypes();
   }
 
-  getSounds() {
-    this.sounds = [
-      { id: 1, value: 'Horn' },
-      { id: 2, value: 'Alarm' },
-      { id: 3, value: 'Sonar' }
-    ];
+  private async  getSounds() {
+    this.sounds = await this.soundService.getSounds();
   }
 
   getDuration() {

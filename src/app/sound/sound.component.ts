@@ -1,3 +1,4 @@
+import { Sound } from './sound.model';
 import { SoundService } from './sound.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -7,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sound.component.sass']
 })
 export class SoundComponent implements OnInit {
-  sounds: [] = []
+  sounds: Sound[] = [];
+
   constructor(private soundService: SoundService) { }
 
   ngOnInit() {

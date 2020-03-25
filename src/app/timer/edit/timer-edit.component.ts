@@ -15,17 +15,19 @@ export class TimerEditComponent implements OnInit {
   id: number;
   isNew: boolean;
   timer: any;
+  cycles = 1;
   name = new FormControl('');
   timerForm = new FormGroup({
     timerName: new FormControl('', [Validators.required]),
     setTotal: new FormControl('', [Validators.required]),
-    cycleType: new FormControl('', [Validators.required]),
-    cycleHour: new FormControl('', []),
-    cycleMinute: new FormControl('', []),
-    cycleSecond: new FormControl('', [Validators.required]),
-    cycleSound: new FormControl('', [Validators.required])
+    cycle: new FormGroup({
+      cycleType: new FormControl('', [Validators.required]),
+      cycleHour: new FormControl('', []),
+      cycleMinute: new FormControl('', []),
+      cycleSecond: new FormControl('', [Validators.required]),
+      cycleSound: new FormControl('', [Validators.required])
+    })
   });
-  typeIsDefined = false;
   duration: any = [{
     hours: [],
     minutes: [],
@@ -63,7 +65,8 @@ export class TimerEditComponent implements OnInit {
   }
 
   onSubmit() {
-    console.warn(this.timerForm.value);
+    console.warn(this.timerForm.value, 'stringifyForm', this.timerForm.value);
+    JSON.stringify(this.timerForm.value);
   }
 
   getSetCount() {
@@ -97,10 +100,6 @@ export class TimerEditComponent implements OnInit {
       this.duration[0].minutes.push(tmpI);
       this.duration[0].seconds.push(tmpI);
     }
-  }
-
-  onCycleTypeChange(data) {
-    this.typeIsDefined = true;
   }
 
 }

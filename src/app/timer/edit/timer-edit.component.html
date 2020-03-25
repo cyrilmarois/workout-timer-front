@@ -29,17 +29,18 @@
           <mat-label>Nombre de set</mat-label>
         </mat-form-field>
       </div>
-      <div class="form-group">
-        Interval cycle
+      <button class="btn btn-primary" (click)="onAddCycle()">Add cycle</button>
+      <div formGroupName="cycle" class="form-group">
+        <div class="form-group">
+          Interval cycle
 
-        <mat-form-field appearance="standard">
-          <mat-select formControlName="cycleType" (selectionChange)="onCycleTypeChange($event)" required>
-            <mat-option *ngFor="let type of types" [value]="type.id">{{ type.slug }}
-            </mat-option>
-          </mat-select>
-          <mat-label>Type</mat-label>
-        </mat-form-field>
-        <div *ngIf="typeIsDefined">
+          <mat-form-field appearance="standard">
+            <mat-select formControlName="cycleType" required>
+              <mat-option *ngFor="let type of types" [value]="type.id">{{ type.slug }}
+              </mat-option>
+            </mat-select>
+            <mat-label>Type</mat-label>
+          </mat-form-field>
           Duration
           <div class="form-group">
             <div class="row">
@@ -73,15 +74,17 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="form-group">
-        <mat-form-field appearance="standard">
-          <mat-select formControlName="cycleSound" required>
-            <mat-option *ngFor="let sound of sounds; index as key" [value]="sound.id">{{ sound.name }}
-            </mat-option>
-          </mat-select>
-          <mat-label>Sound</mat-label>
-        </mat-form-field>
+        <div class="form-group">
+          <mat-form-field appearance="standard">
+            <mat-select formControlName="cycleSound" required>
+              <mat-option *ngFor="let sound of sounds; index as key" [value]="sound.id">
+                <span class="float-left">{{ sound.filename }}</span>
+                <span class="float-right"><audio src="'http://127.0.0.1:8000/public/storage/{{ sound.filename }}'" controls></audio></span>
+              </mat-option>
+            </mat-select>
+            <mat-label>Sound</mat-label>
+          </mat-form-field>
+        </div>
       </div>
       <div class="form-group mt-3">
         <div class="float-left">

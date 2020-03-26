@@ -16,7 +16,6 @@ export class TypeApiService {
       .get(`${this.BASE_URI}/`, options)
       .pipe(
         map((res: any) => {
-          console.warn('res', res, 'data', res.data);
           const dataArray: Type[] = [];
           if (res.data) {
             res.data.forEach(element => {

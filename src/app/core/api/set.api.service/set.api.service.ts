@@ -6,6 +6,6 @@ import { Injectable } from '@angular/core';
   providedIn : 'root'
 })
 export class SetApiService {
-  constructor(private httpClient: HttpClientService) {
+  constructor(private httpClientService: HttpClientService) {
   }
 }

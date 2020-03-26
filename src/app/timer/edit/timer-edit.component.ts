@@ -3,7 +3,7 @@ import { TimerService } from './../timer.service';
 import { TypeService } from './../../type/type.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormArray, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-timer-edit',
@@ -15,18 +15,19 @@ export class TimerEditComponent implements OnInit {
   id: number;
   isNew: boolean;
   timer: any;
-  cycles = 1;
-  name = new FormControl('');
-  timerForm = new FormGroup({
-    timerName: new FormControl('', [Validators.required]),
-    setTotal: new FormControl('', [Validators.required]),
-    cycle: new FormGroup({
-      cycleType: new FormControl('', [Validators.required]),
-      cycleHour: new FormControl('', []),
-      cycleMinute: new FormControl('', []),
-      cycleSecond: new FormControl('', [Validators.required]),
-      cycleSound: new FormControl('', [Validators.required])
-    })
+  timerForm = this.formBuilder.group({
+    timerName: ['', Validators.required],
+    setTotal: ['', Validators.required],
+    // cycle: this.formBuilder.group({
+    //   cycleType: ['', Validators.required],
+    //   cycleHour: [''],
+    //   cycleMinute: [''],
+    //   cycleSecond: ['', Validators.required],
+    //   cycleSound: ['', Validators.required]
+    // }),
+    cycles: this.formBuilder.array([
+      this.addCycleFormGroup()
+    ])
   });
   duration: any = [{
     hours: [],
@@ -39,7 +40,8 @@ export class TimerEditComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private timerService: TimerService,
               private typeService: TypeService,
-              private soundService: SoundService) { }
+              private soundService: SoundService,
+              private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.route.params
@@ -54,14 +56,6 @@ export class TimerEditComponent implements OnInit {
     this.getTypes();
     this.getSounds();
     this.getDuration();
-  }
-
-  updateTimerName() {
-    this.name.setValue('hodor');
-  }
-
-  submit() {
-    console.warn(this.name.value);
   }
 
   onSubmit() {
@@ -102,4 +96,25 @@ export class TimerEditComponent implements OnInit {
     }
   }
 
+  get cycles(): FormArray {
+    return this.timerForm.get('cycles') as FormArray;
+  }
+
+  onAddCycle(): void {
+    this.cycles.push(this.addCycleFormGroup());
+  }
+
+  onRemoveCycle(index: number): void {
+    this.cycles.removeAt(index);
+  }
+
+  addCycleFormGroup(): FormGroup {
+    return this.formBuilder.group({
+      cycleType: ['', Validators.required],
+      cycleHour: [''],
+      cycleMinute: [''],
+      cycleSecond: ['', Validators.required],
+      cycleSound: ['', Validators.required]
+    });
+  }
 }

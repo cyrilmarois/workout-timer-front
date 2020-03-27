@@ -1,3 +1,4 @@
+import { httpInterceptorProviders } from './core/http-interceptors/index';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -61,7 +62,9 @@ import { TypeComponent } from './type/type.component';
     MatSliderModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    httpInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

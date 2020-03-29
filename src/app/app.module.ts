@@ -31,6 +31,7 @@ import { TimerDetailComponent } from './timer/detail/timer-detail.component';
 import { TimerEditComponent } from './timer/edit/timer-edit.component';
 import { TimerListComponent } from './timer/list/timer-list.component';
 import { TypeComponent } from './type/type.component';
+import { AuthComponent } from './auth/auth.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,8 @@ import { TypeComponent } from './type/type.component';
     CycleComponent,
     SoundComponent,
     TypeComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,

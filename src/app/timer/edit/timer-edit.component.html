@@ -1,0 +1,99 @@
+<p>timer-edit works!</p>
+<div class="row">
+  <div class="col-md-5 mx-auto">
+    <form [formGroup]="timerForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <mat-form-field appearance="standard">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Name" formControlName="timerName" required>
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-hint>Max 30 carac.</mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="standard">
+          <mat-select formControlName="setTotal" required>
+            <mat-option *ngFor="let count of setCount; index as key" [value]="count">{{ count }}
+            </mat-option>
+          </mat-select>
+          <mat-label>Number of sets</mat-label>
+        </mat-form-field>
+      </div>
+      <div formArrayName="cycles" *ngFor="let cycle of timerForm.get('cycles').controls; let i = index" class="form-group">
+        <div [formGroupName]="i" class="form-group">
+          <div class="form-group">
+            <h5>Interval cycle</h5>
+            <mat-form-field appearance="standard">
+              <mat-select formControlName="cycleType" required>
+                <mat-option *ngFor="let type of types" [value]="type.id">{{ type.slug }}
+                </mat-option>
+              </mat-select>
+              <mat-label>Type</mat-label>
+            </mat-form-field>
+            <h5>Duration</h5>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field appearance="standard">
+                    <mat-select formControlName="cycleHour">
+                      <mat-option *ngFor="let hour of duration[0].hours" [value]="hour">{{ hour }}
+                      </mat-option>
+                    </mat-select>
+                    <mat-label>Hour</mat-label>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field appearance="standard">
+                    <mat-select formControlName="cycleMinute">
+                      <mat-option *ngFor="let minute of duration[0].minutes" [value]="minute">{{ minute }}
+                      </mat-option>
+                    </mat-select>
+                    <mat-label>Minute</mat-label>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field appearance="standard">
+                    <mat-select formControlName="cycleSecond" required>
+                      <mat-option *ngFor="let second of duration[0].seconds" [value]="second">{{ second }}
+                      </mat-option>
+                    </mat-select>
+                    <mat-label>Second</mat-label>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <mat-form-field appearance="standard">
+                <mat-select formControlName="cycleSound" required>
+                  <mat-option *ngFor="let sound of sounds" [value]="sound.id">
+                    <span class="float-left">{{ sound.filename }}</span>
+                    <span class="float-right">
+                      <!-- <audio src="'http://127.0.0.1:8000/public/storage/{{ sound.filename }}'" controls></audio> -->
+                    </span>
+                  </mat-option>
+                </mat-select>
+                <mat-label>Sound</mat-label>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="form-group mt-3">
+          <div *ngIf="timerForm.get('cycles').length > 1"  class="float-left">
+            <button class="btn btn-warning" (click)="onRemoveCycle(i)">Remove Cycle</button>
+          </div>
+          <div class="float-right">
+            <button class="btn btn-warning" (click)="onAddCycle()">Add Cycle</button>
+          </div>
+        </div>
+      </div>
+      <div class="form-group mt-3">
+        <div class="float-left">
+          <button mat-button class="btn btn-danger" (click)="cancel()">Cancel</button>
+        </div>
+        <div class="float-right">
+          <button mat-button class="btn btn-success" type="submit" >Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

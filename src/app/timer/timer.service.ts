@@ -31,7 +31,7 @@ export class TimerService {
   async createTimer(body: any) {
     const res: any = await this.timerApiService.create(body)
       .toPromise();
-
+    console.warn('res', res);
     return res;
   }
 

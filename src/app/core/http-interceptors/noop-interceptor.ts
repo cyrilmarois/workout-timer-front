@@ -15,10 +15,10 @@ export class NoopInterceptor implements HttpInterceptor {
       const reqUpdate = req.clone({
         headers: new HttpHeaders({
           'Content-type': 'application/json',
-          'Access-Control-Allow-Origin': 'https://marois-cyril.fr',
+          // 'Access-Control-Allow-Origin': 'http://timer.local',
         })
       });
-
+      console.warn('reqUpdate', reqUpdate);
       return next.handle(reqUpdate);
     }
 }

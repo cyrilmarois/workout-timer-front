@@ -60,7 +60,7 @@ export class TimerEditComponent implements OnInit {
 
   onSubmit() {
     console.warn(this.timerForm.value, 'stringifyForm', this.timerForm.value);
-    JSON.stringify(this.timerForm.value);
+    this.timerService.createTimer(JSON.stringify(this.timerForm.value));
   }
 
   getSetCount() {

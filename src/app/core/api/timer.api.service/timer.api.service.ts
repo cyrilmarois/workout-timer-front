@@ -45,6 +45,7 @@ export class TimerApiService {
   }
 
   create(body: any) {
+    console.warn('body', body);
     return this.httpClientService
       .post(`${this.BASE_URI}/`, body)
       .pipe(

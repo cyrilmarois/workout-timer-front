@@ -1,10 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { SoundService } from './../../sound/sound.service';
 import { TimerService } from './../timer.service';
 import { TypeService } from './../../type/type.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormArray, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormArray, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-timer-edit',
@@ -17,13 +16,13 @@ export class TimerEditComponent implements OnInit {
   isNew: boolean;
   timer: any;
   timerForm = this.formBuilder.group({
-    timerName: ['', Validators.required],
-    setTotal: ['', Validators.required],
+    name: ['', Validators.required],
+    repetition: ['', Validators.required],
     cycles: this.formBuilder.array([
       this.addCycleFormGroup()
     ])
   });
-  duration: any = [{
+  timing: any = [{
     hours: [],
     minutes: [],
     seconds: [],
@@ -35,12 +34,11 @@ export class TimerEditComponent implements OnInit {
               private timerService: TimerService,
               private typeService: TypeService,
               private soundService: SoundService,
-              private formBuilder: FormBuilder,
-              private http: HttpClient) { }
+              private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     var a = 1;
-    
+
     this.route.params
     .subscribe((params: Params) => {
       this.id = +params['id'];
@@ -52,20 +50,16 @@ export class TimerEditComponent implements OnInit {
     this.getSetCount();
     this.getTypes();
     this.getSounds();
-    this.getDuration();
+    this.getTiming();
   }
 
   onSubmit(): void {
     console.warn(this.timerForm.value, 'stringifyForm', this.timerForm.value);
-    // this.http.get('https://itunes.apple.com/search?artist=nirvana')
-    //   .subscribe((res: any) => {
-    //     console.warn('res', res);
-    // });
     this.timerService.createTimer(JSON.stringify(this.timerForm.value));
   }
 
   getSetCount() {
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= 20; i++) {
       this.setCount.push(i);
     }
   }
@@ -79,21 +73,21 @@ export class TimerEditComponent implements OnInit {
     this.sounds = await this.soundService.getSounds();
   }
 
-  getDuration() {
+  getTiming() {
     for (let i = 0; i <= 24; i++) {
       let tmpI: string = i.toString();
       if (i < 10) {
         tmpI = '0' + tmpI;
       }
-      this.duration[0].hours.push(tmpI);
+      this.timing[0].hours.push(tmpI);
     }
     for (let i = 0; i <= 60; i++) {
       let tmpI: string = i.toString();
       if (i < 10) {
         tmpI = '0' + tmpI;
       }
-      this.duration[0].minutes.push(tmpI);
-      this.duration[0].seconds.push(tmpI);
+      this.timing[0].minutes.push(tmpI);
+      this.timing[0].seconds.push(tmpI);
     }
   }
 
@@ -111,11 +105,11 @@ export class TimerEditComponent implements OnInit {
 
   addCycleFormGroup(): FormGroup {
     return this.formBuilder.group({
-      cycleType: ['', Validators.required],
-      cycleHour: [''],
-      cycleMinute: [''],
-      cycleSecond: ['', Validators.required],
-      cycleSound: ['', Validators.required]
+      type: ['', Validators.required],
+      hour: [''],
+      minute: [''],
+      second: [''],
+      sound: ['', Validators.required]
     });
   }
 }

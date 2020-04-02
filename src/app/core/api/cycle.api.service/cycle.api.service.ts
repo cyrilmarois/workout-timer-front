@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CycleApiService {
+  private BASE_URI = 'cycles';
   constructor(private httpClientService: HttpClientService) {
   }
 }

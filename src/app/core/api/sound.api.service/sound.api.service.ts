@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class SoundApiService {
-  private BASE_URI = 'sound';
+  private BASE_URI = 'sounds';
 
   constructor(private httpClientService: HttpClientService) {
   }

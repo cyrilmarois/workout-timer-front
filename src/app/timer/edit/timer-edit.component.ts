@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { SoundService } from './../../sound/sound.service';
 import { TimerService } from './../timer.service';
 import { TypeService } from './../../type/type.service';
@@ -18,13 +19,6 @@ export class TimerEditComponent implements OnInit {
   timerForm = this.formBuilder.group({
     timerName: ['', Validators.required],
     setTotal: ['', Validators.required],
-    // cycle: this.formBuilder.group({
-    //   cycleType: ['', Validators.required],
-    //   cycleHour: [''],
-    //   cycleMinute: [''],
-    //   cycleSecond: ['', Validators.required],
-    //   cycleSound: ['', Validators.required]
-    // }),
     cycles: this.formBuilder.array([
       this.addCycleFormGroup()
     ])
@@ -41,9 +35,12 @@ export class TimerEditComponent implements OnInit {
               private timerService: TimerService,
               private typeService: TypeService,
               private soundService: SoundService,
-              private formBuilder: FormBuilder) { }
+              private formBuilder: FormBuilder,
+              private http: HttpClient) { }
 
   ngOnInit() {
+    var a = 1;
+    
     this.route.params
     .subscribe((params: Params) => {
       this.id = +params['id'];
@@ -58,8 +55,12 @@ export class TimerEditComponent implements OnInit {
     this.getDuration();
   }
 
-  onSubmit() {
+  onSubmit(): void {
     console.warn(this.timerForm.value, 'stringifyForm', this.timerForm.value);
+    // this.http.get('https://itunes.apple.com/search?artist=nirvana')
+    //   .subscribe((res: any) => {
+    //     console.warn('res', res);
+    // });
     this.timerService.createTimer(JSON.stringify(this.timerForm.value));
   }
 

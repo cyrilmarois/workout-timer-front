@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class TimerApiService {
-  private BASE_URI = 'timer';
+  private BASE_URI = 'timers';
 
   constructor(private httpClientService: HttpClientService) {}
 
@@ -38,7 +38,7 @@ export class TimerApiService {
 
   update(id: number, body: any) {
     return this.httpClientService
-      .put(`${this.BASE_URI}/` + id , body)
+      .patch(`${this.BASE_URI}/` + id , body)
       .pipe(
         map((res: any) => new Timer().deserializable(res))
       );
@@ -47,7 +47,7 @@ export class TimerApiService {
   create(body: any) {
     console.warn('body', body);
     return this.httpClientService
-      .post(`${this.BASE_URI}/`, body)
+      .post(`${this.BASE_URI}`, body)
       .pipe(
         map((res: any) => new Timer().deserializable(res))
       );

@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class TypeApiService {
-  private BASE_URI = 'type';
+  private BASE_URI = 'types';
 
   constructor(private httpClientService: HttpClientService) {
   }

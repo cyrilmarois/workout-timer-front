@@ -1,3 +1,4 @@
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthComponent implements OnInit {
 
-  constructor() { }
+  loginForm = this.formBuilder.group({
+    login: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required])
+  });
+
+  registerForm = this.formBuilder.group({
+    firstName: ['', [Validators.required]],
+    lastName: ['', [Validators.required]],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required]],
+    password_confirmation: ['', [Validators.required]],
+  });
+
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.registerForm.patchValue({password: 'w0rK0ut!'});
   }
 
+  onSubmit() {
+    console.warn('SUBMIT', this.registerForm.value);
+  }
 }

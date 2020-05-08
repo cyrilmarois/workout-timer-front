@@ -19,6 +19,7 @@ import { MatSliderModule } from "@angular/material/slider";
 import { AppRoutingModule } from "./app-routing.module";
 
 import { AppComponent } from "./app.component";
+import { AuthComponent } from "./auth/auth.component";
 import { CycleComponent } from "./cycle/cycle.component";
 import { HeaderComponent } from "./header/header.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
@@ -28,20 +29,22 @@ import { WorkoutDetailComponent } from "./workout/detail/workout-detail.componen
 import { WorkoutEditComponent } from "./workout/edit/workout-edit.component";
 import { WorkoutListComponent } from "./workout/list/workout-list.component";
 import { TypeComponent } from "./type/type.component";
-import { AuthComponent } from "./auth/auth.component";
+import { PasswordValidatorComponent } from "./shared/password-validator/password-validator.component";
+
 @NgModule({
   declarations: [
     AppComponent,
+    AuthComponent,
+    CycleComponent,
     HeaderComponent,
+    NotFoundComponent,
+    PasswordValidatorComponent,
+    SetComponent,
+    SoundComponent,
+    TypeComponent,
     WorkoutListComponent,
     WorkoutDetailComponent,
     WorkoutEditComponent,
-    SetComponent,
-    CycleComponent,
-    SoundComponent,
-    TypeComponent,
-    NotFoundComponent,
-    AuthComponent,
   ],
   imports: [
     BrowserModule,

@@ -23,13 +23,14 @@ import { AuthComponent } from "./auth/auth.component";
 import { CycleComponent } from "./cycle/cycle.component";
 import { HeaderComponent } from "./header/header.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
+import { PasswordValidatorComponent } from "./shared/password-validator/password-validator.component";
+import { RegisterComponent } from "./register/register.component";
 import { SetComponent } from "./set/set.component";
 import { SoundComponent } from "./sound/sound.component";
+import { TypeComponent } from "./type/type.component";
 import { WorkoutDetailComponent } from "./workout/detail/workout-detail.component";
 import { WorkoutEditComponent } from "./workout/edit/workout-edit.component";
 import { WorkoutListComponent } from "./workout/list/workout-list.component";
-import { TypeComponent } from "./type/type.component";
-import { PasswordValidatorComponent } from "./shared/password-validator/password-validator.component";
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { PasswordValidatorComponent } from "./shared/password-validator/password
     HeaderComponent,
     NotFoundComponent,
     PasswordValidatorComponent,
+    RegisterComponent,
     SetComponent,
     SoundComponent,
     TypeComponent,

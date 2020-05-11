@@ -1,0 +1,116 @@
+<p>register works!</p>
+<div class="row">
+  Form Value : {{ registerForm.value | json }}
+
+  Form Status : {{ registerForm.status }} Form dirty : {{ registerForm.dirty }}
+
+  <div class="col-md-5 mx-auto">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <mat-form-field appearance="standard">
+          <mat-label>First Name</mat-label>
+          <input
+            matInput
+            placeholder="firstName"
+            formControlName="firstName"
+            required
+          />
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="standard">
+          <mat-label>Last Name</mat-label>
+          <input
+            matInput
+            placeholder="lastName"
+            formControlName="lastName"
+            required
+          />
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="standard">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            placeholder="Email"
+            formControlName="email"
+            required
+            type="email"
+          />
+        </mat-form-field>
+        <div
+          *ngIf="
+            registerForm.controls.email.hasError('email') &&
+            (registerForm.touched || registerForm.dirty)
+          "
+          class="cross-validation-error-message alert alert-danger"
+        >
+          Email must be format : test@example.com
+        </div>
+      </div>
+      <div class="form-group">
+        Form password Value : {{ registerForm.controls.password.value }}
+        <mat-form-field appearance="standard">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            placeholder="Password"
+            formControlName="password"
+            required
+            type="password"
+          />
+        </mat-form-field>
+        <password-validator
+          [password]="registerForm.controls.password.value"
+          [label]="'Password strength'"
+        >
+        </password-validator>
+      </div>
+      <div class="form-group">
+        Form password Confirmation Value :
+        {{ registerForm.controls.password_confirmation.value }} Confirmation
+        Password NoPasswordMatch errors
+        {{
+          registerForm.controls.password_confirmation.hasError(
+            "NoPasswordMatch"
+          )
+        }}
+        <mat-form-field appearance="standard">
+          <mat-label>Password confirmation</mat-label>
+          <input
+            matInput
+            placeholder="Password confirmation"
+            formControlName="password_confirmation"
+            required
+            type="password"
+          />
+        </mat-form-field>
+        <div
+          *ngIf="
+            registerForm.controls.password_confirmation.hasError(
+              'NoPasswordMatch'
+            ) &&
+            (registerForm.touched || registerForm.dirty)
+          "
+          class="cross-validation-error-message alert alert-danger"
+        >
+          Password confirmation must match with password
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="float-left">
+          <button class="btn btn-danger">Cancel</button>
+        </div>
+        <div class="float-right">
+          <button
+            class="btn btn-success"
+            [disabled]="'INVALID' === registerForm.status"
+          >
+            Register
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

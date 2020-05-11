@@ -1,6 +1,7 @@
 import { WorkoutListComponent } from "./workout/list/workout-list.component";
 import { WorkoutDetailComponent } from "./workout/detail/workout-detail.component";
 import { WorkoutEditComponent } from "./workout/edit/workout-edit.component";
+import { RegisterComponent } from "./register/register.component";
 import { AuthComponent } from "./auth/auth.component";
 import { SetComponent } from "./set/set.component";
 import { NgModule } from "@angular/core";
@@ -11,6 +12,7 @@ import { NotFoundComponent } from "./not-found/not-found.component";
 const appRoutes: Routes = [
   // { path: '', redirectTo: '/workout', pathMatch: 'full' },
   { path: "signin", component: AuthComponent },
+  { path: "signup", component: RegisterComponent },
   { path: "workout/new", component: WorkoutEditComponent },
   { path: "workout/:id", component: WorkoutDetailComponent },
   {

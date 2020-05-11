@@ -1,74 +1,42 @@
 <p>auth works!</p>
-<!-- <div class="row">
+<div class="row">
   <div class="col-md-4 mx-auto">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <mat-form-field appearance="standard">
           <mat-label>Login</mat-label>
-          <input matInput placeholder="login" formControlName="login" required>
+          <input
+            matInput
+            placeholder="login"
+            formControlName="login"
+            type="email"
+            required
+          />
         </mat-form-field>
+        <div
+          *ngIf="
+            loginForm.controls.login.hasError('email') &&
+            (loginForm.touched || loginForm.dirty)
+          "
+          class="cross-validation-error-message alert alert-danger"
+        >
+          Login must be format : test@example.com
+        </div>
       </div>
       <div class="form-group">
         <mat-form-field appearance="standard">
           <mat-label>Password</mat-label>
-          <input matInput placeholder="Password" formControlName="password" required type="password">
+          <input
+            matInput
+            placeholder="Password"
+            formControlName="password"
+            type="password"
+            required
+          />
         </mat-form-field>
       </div>
       <div class="form-group">
         <button class="btn btn-success">Login</button>
-      </div>
-    </form>
-  </div>
-</div> -->
-
-<div class="row">
-  Form Value : {{ registerForm.value | json }}
-
-  Form Status : {{ registerForm.status }}
-
-  <div class="col-md-5 mx-auto">
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <mat-form-field appearance="standard">
-          <mat-label>First Name</mat-label>
-          <input matInput placeholder="firstName" formControlName="firstName" required>
-        </mat-form-field>
-      </div>
-      <div class="form-group">
-        <mat-form-field appearance="standard">
-          <mat-label>last Name</mat-label>
-          <input matInput placeholder="lastName" formControlName="lastName" required>
-        </mat-form-field>
-      </div>
-      <div class="form-group">
-        <mat-form-field appearance="standard">
-          <mat-label>Email</mat-label>
-          <input matInput placeholder="Email" formControlName="email" required type="email">
-        </mat-form-field>
-      </div>
-      <div class="form-group">
-        Form password Value : {{ registerForm.controls.password.value }}
-        <mat-form-field appearance="standard">
-          <mat-label>Password</mat-label>
-          <input matInput placeholder="Password" formControlName="password" required type="password">
-        </mat-form-field>
-        <password-validator [password]="registerForm.controls.password.value"
-          [label]="'Password strength'">
-        </password-validator>
-      </div>
-      <div class="form-group">
-        <mat-form-field appearance="standard">
-          <mat-label>Password confirmation</mat-label>
-          <input matInput placeholder="Password confirmation" formControlName="password_confirmation" required type="password">
-        </mat-form-field>
-      </div>
-      <div class="form-group">
-        <div class="float-left">
-          <button class="btn btn-danger">Cancel</button>
-        </div>
-        <div class="float-right">
-          <button class="btn btn-success">Register</button>
-        </div>
       </div>
     </form>
   </div>

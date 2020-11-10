@@ -13,7 +13,7 @@ export class AuthInterceptor implements HttpInterceptor {
     const authReq = req.clone({
       setHeaders: { Authorization:  authToken }
     });
-    console.warn('authReq', authReq);
+    // console.warn('authReq', authReq);
     return next.handle(authReq);
   }
 }

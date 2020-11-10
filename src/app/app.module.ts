@@ -28,6 +28,7 @@ import { RegisterComponent } from "./register/register.component";
 import { SetComponent } from "./set/set.component";
 import { SoundComponent } from "./sound/sound.component";
 import { TypeComponent } from "./type/type.component";
+import { UserComponent } from "./user/user.component";
 import { WorkoutDetailComponent } from "./workout/detail/workout-detail.component";
 import { WorkoutEditComponent } from "./workout/edit/workout-edit.component";
 import { WorkoutListComponent } from "./workout/list/workout-list.component";
@@ -44,6 +45,7 @@ import { WorkoutListComponent } from "./workout/list/workout-list.component";
     SetComponent,
     SoundComponent,
     TypeComponent,
+    UserComponent,
     WorkoutListComponent,
     WorkoutDetailComponent,
     WorkoutEditComponent,

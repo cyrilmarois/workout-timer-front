@@ -1,11 +1,11 @@
-<p>timer-edit works!</p>
+<p>workout-edit works!</p>
 <div class="row">
   <div class="col-md-5 mx-auto">
-    <form [formGroup]="timerForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="workoutForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <mat-form-field appearance="standard">
           <mat-label>Name</mat-label>
-          <input matInput placeholder="Name" formControlName="name" required>
+          <input matInput placeholder="Name" formControlName="name" required />
           <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
           <mat-hint>Max 30 carac.</mat-hint>
         </mat-form-field>
@@ -13,19 +13,30 @@
       <div class="form-group">
         <mat-form-field appearance="standard">
           <mat-select formControlName="repetition" required>
-            <mat-option *ngFor="let count of setCount; index as key" [value]="count">{{ count }}
+            <mat-option
+              *ngFor="let count of setCount; index as key"
+              [value]="count"
+              >{{ count }}
             </mat-option>
           </mat-select>
           <mat-label>Number of sets</mat-label>
         </mat-form-field>
       </div>
-      <div formArrayName="cycles" *ngFor="let cycle of timerForm.get('cycles').controls; let i = index" class="form-group">
+      <div
+        formArrayName="cycles"
+        *ngFor="
+          let cycle of workoutForm.get('cycles')['controls'];
+          let i = index
+        "
+        class="form-group"
+      >
         <div [formGroupName]="i" class="form-group">
           <div class="form-group">
             <h5>Interval cycle</h5>
             <mat-form-field appearance="standard">
               <mat-select formControlName="type" required>
-                <mat-option *ngFor="let type of types" [value]="type.id">{{ type.slug }}
+                <mat-option *ngFor="let type of types" [value]="type.id"
+                  >{{ type.slug }}
                 </mat-option>
               </mat-select>
               <mat-label>Type</mat-label>
@@ -36,7 +47,10 @@
                 <div class="col-md-4">
                   <mat-form-field appearance="standard">
                     <mat-select formControlName="hour">
-                      <mat-option *ngFor="let hour of timing[0].hours" [value]="hour">{{ hour }}
+                      <mat-option
+                        *ngFor="let hour of timing[0].hours"
+                        [value]="hour"
+                        >{{ hour }}
                       </mat-option>
                     </mat-select>
                     <mat-label>Hour</mat-label>
@@ -45,7 +59,10 @@
                 <div class="col-md-4">
                   <mat-form-field appearance="standard">
                     <mat-select formControlName="minute">
-                      <mat-option *ngFor="let minute of timing[0].minutes" [value]="minute">{{ minute }}
+                      <mat-option
+                        *ngFor="let minute of timing[0].minutes"
+                        [value]="minute"
+                        >{{ minute }}
                       </mat-option>
                     </mat-select>
                     <mat-label>Minute</mat-label>
@@ -54,7 +71,10 @@
                 <div class="col-md-4">
                   <mat-form-field appearance="standard">
                     <mat-select formControlName="second" required>
-                      <mat-option *ngFor="let second of timing[0].seconds" [value]="second">{{ second }}
+                      <mat-option
+                        *ngFor="let second of timing[0].seconds"
+                        [value]="second"
+                        >{{ second }}
                       </mat-option>
                     </mat-select>
                     <mat-label>Second</mat-label>
@@ -78,20 +98,28 @@
           </div>
         </div>
         <div class="form-group mt-3">
-          <div *ngIf="timerForm.get('cycles').length > 1"  class="float-left">
-            <button class="btn btn-warning" (click)="onRemoveCycle(i)">Remove Cycle</button>
+          <div *ngIf="workoutForm.get('cycles').length > 1" class="float-left">
+            <button class="btn btn-warning" (click)="onRemoveCycle(i)">
+              Remove Cycle
+            </button>
           </div>
           <div class="float-right">
-            <button class="btn btn-warning" (click)="onAddCycle()">Add Cycle</button>
+            <button class="btn btn-warning" (click)="onAddCycle()">
+              Add Cycle
+            </button>
           </div>
         </div>
       </div>
       <div class="form-group mt-3">
         <div class="float-left">
-          <button mat-button class="btn btn-danger" (click)="cancel()">Cancel</button>
+          <button mat-button class="btn btn-danger" (click)="cancel()">
+            Cancel
+          </button>
         </div>
         <div class="float-right">
-          <button mat-button class="btn btn-success" type="submit" >Submit</button>
+          <button mat-button class="btn btn-success" type="submit">
+            Submit
+          </button>
         </div>
       </div>
     </form>

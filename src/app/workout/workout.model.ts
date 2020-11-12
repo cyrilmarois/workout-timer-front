@@ -1,10 +1,10 @@
-import { Deserializable } from './../core/deserializable';
-import { Injectable } from '@angular/core';
+import { Deserializable } from "../core/deserializable";
+import { Injectable } from "@angular/core";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
-export class Timer implements Deserializable {
+export class Workout implements Deserializable {
   private id: number;
   private name: string;
   private description: string;
